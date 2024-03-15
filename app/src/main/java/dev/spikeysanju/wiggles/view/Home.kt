@@ -21,6 +21,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import dev.spikeysanju.wiggles.component.ItemDogCard
@@ -29,7 +30,7 @@ import dev.spikeysanju.wiggles.model.Dog
 
 @Composable
 fun Home(navController: NavHostController, dogList: List<Dog>, toggleTheme: () -> Unit) {
-    LazyColumn {
+    LazyColumn(modifier = Modifier.testTag("dogsList")) {
         item {
             TopBar(
                 onToggle = {

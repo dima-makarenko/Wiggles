@@ -39,6 +39,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -52,7 +53,8 @@ fun ItemDogCard(dog: Dog, onItemClicked: (dog: Dog) -> Unit) {
             .fillMaxWidth()
             .padding(8.dp)
             .clip(RoundedCornerShape(16.dp))
-            .clickable(onClick = { onItemClicked(dog) }),
+            .clickable(onClick = { onItemClicked(dog) })
+            .testTag("dogCard"),
         elevation = 0.dp,
         backgroundColor = MaterialTheme.colors.onSurface
     ) {
@@ -66,7 +68,8 @@ fun ItemDogCard(dog: Dog, onItemClicked: (dog: Dog) -> Unit) {
             Image(
                 modifier = Modifier
                     .size(80.dp, 80.dp)
-                    .clip(RoundedCornerShape(16.dp)),
+                    .clip(RoundedCornerShape(16.dp))
+                    .testTag("dogImage"),
                 painter = image,
                 alignment = Alignment.CenterStart,
                 contentDescription = "",
@@ -78,7 +81,9 @@ fun ItemDogCard(dog: Dog, onItemClicked: (dog: Dog) -> Unit) {
             Column(modifier = Modifier.align(Alignment.CenterVertically)) {
                 Text(
                     text = dog.name,
-                    modifier = Modifier.padding(0.dp, 0.dp, 12.dp, 0.dp),
+                    modifier = Modifier
+                        .padding(0.dp, 0.dp, 12.dp, 0.dp)
+                        .testTag("dogName"),
                     color = MaterialTheme.colors.surface,
                     fontWeight = FontWeight.Bold,
                     style = typography.subtitle1
@@ -91,7 +96,9 @@ fun ItemDogCard(dog: Dog, onItemClicked: (dog: Dog) -> Unit) {
                         append("yrs | ")
                         append(dog.gender)
                     },
-                    modifier = Modifier.padding(0.dp, 0.dp, 12.dp, 0.dp),
+                    modifier = Modifier
+                        .padding(0.dp, 0.dp, 12.dp, 0.dp)
+                        .testTag("dogAdditionalInfo"),
                     color = MaterialTheme.colors.surface,
                     style = typography.caption
                 )
@@ -109,7 +116,9 @@ fun ItemDogCard(dog: Dog, onItemClicked: (dog: Dog) -> Unit) {
 
                     Text(
                         text = dog.location,
-                        modifier = Modifier.padding(8.dp, 12.dp, 12.dp, 0.dp),
+                        modifier = Modifier
+                            .padding(8.dp, 12.dp, 12.dp, 0.dp)
+                            .testTag("dogLocation"),
                         color = MaterialTheme.colors.surface,
                         style = typography.caption
                     )

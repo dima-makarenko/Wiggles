@@ -30,6 +30,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -42,13 +43,15 @@ fun TopBar(onToggle: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .testTag("topBar")
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = "Hey Spikey,",
                 textAlign = TextAlign.Start,
                 style = MaterialTheme.typography.h5,
-                color = MaterialTheme.colors.surface
+                color = MaterialTheme.colors.surface,
+                modifier = Modifier.testTag("topBarTitle")
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -57,7 +60,8 @@ fun TopBar(onToggle: () -> Unit) {
                 text = "Adopt a new friend near you!",
                 textAlign = TextAlign.Start,
                 style = MaterialTheme.typography.subtitle1,
-                color = MaterialTheme.colors.surface
+                color = MaterialTheme.colors.surface,
+                modifier = Modifier.testTag("topBarSubtitle")
             )
         }
         Row(

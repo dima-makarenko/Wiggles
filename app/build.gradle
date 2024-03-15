@@ -9,6 +9,7 @@ android {
     defaultConfig {
         applicationId "com.example.androiddevchallenge"
         minSdkVersion 23
+        //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -84,4 +85,9 @@ dependencies {
 
     // navigation animation
     implementation "com.google.accompanist:accompanist-navigation-animation:$accompanist_verison"
+
+    // Espresso
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test:rules:1.4.0'
 }

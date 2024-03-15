@@ -42,6 +42,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -60,7 +61,12 @@ fun Details(navController: NavController, id: Int) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Details") },
+                title = {
+                    Text(
+                        modifier = Modifier.testTag("topBarTitle"),
+                        text = "Details"
+                    )
+                },
                 backgroundColor = MaterialTheme.colors.background,
                 contentColor = colorResource(id = R.color.text),
                 navigationIcon = {
@@ -71,7 +77,8 @@ fun Details(navController: NavController, id: Int) {
                             .size(24.dp, 24.dp)
                             .clickable {
                                 navController.navigateUp()
-                            },
+                            }
+                            .testTag("topBarBackButton"),
                         tint = colorResource(id = R.color.text)
                     )
                 }
@@ -90,6 +97,7 @@ fun DetailsView(id: Int) {
         modifier = Modifier
             .fillMaxSize()
             .background(color = colorResource(id = R.color.background))
+            .testTag("dogDetailsView")
     ) {
 
         val dog = FakeDogDatabase.dogList[id]
@@ -102,7 +110,8 @@ fun DetailsView(id: Int) {
                 Image(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(346.dp),
+                        .height(346.dp)
+                        .testTag("dogDetailsImage"),
                     painter = dogImage,
                     alignment = Alignment.CenterStart,
                     contentDescription = "",
@@ -125,7 +134,8 @@ fun DetailsView(id: Int) {
                     text = about,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp, 0.dp, 16.dp, 0.dp),
+                        .padding(16.dp, 0.dp, 16.dp, 0.dp)
+                        .testTag("dogDescription"),
                     color = colorResource(id = R.color.text),
                     style = MaterialTheme.typography.body2,
                     textAlign = TextAlign.Start
@@ -143,7 +153,8 @@ fun DetailsView(id: Int) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp, 0.dp, 16.dp, 0.dp),
+                        .padding(16.dp, 0.dp, 16.dp, 0.dp)
+                        .testTag("dogShortInfoCard"),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     InfoCard(title = "Age", value = dog.age.toString().plus(" yrs"))
@@ -174,7 +185,8 @@ fun DetailsView(id: Int) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(52.dp)
-                    .padding(16.dp, 0.dp, 16.dp, 0.dp),
+                    .padding(16.dp, 0.dp, 16.dp, 0.dp)
+                    .testTag("adoptButton"),
                 colors = ButtonDefaults.textButtonColors(
                     backgroundColor = colorResource(id = R.color.blue),
                     contentColor = Color.White

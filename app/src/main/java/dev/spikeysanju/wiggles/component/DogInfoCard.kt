@@ -31,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -47,7 +48,9 @@ fun DogInfoCard(name: String, gender: String, location: String) {
         Column(modifier = Modifier.align(Alignment.CenterVertically)) {
             Text(
                 text = name,
-                modifier = Modifier.padding(0.dp, 0.dp, 12.dp, 0.dp),
+                modifier = Modifier
+                    .padding(0.dp, 0.dp, 12.dp, 0.dp)
+                    .testTag("dogInfoName"),
                 color = MaterialTheme.colors.surface,
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.h5
@@ -67,7 +70,9 @@ fun DogInfoCard(name: String, gender: String, location: String) {
 
                 Text(
                     text = location,
-                    modifier = Modifier.padding(8.dp, 12.dp, 12.dp, 0.dp),
+                    modifier = Modifier
+                        .padding(8.dp, 12.dp, 12.dp, 0.dp)
+                        .testTag("dogInfoLocation"),
                     color = MaterialTheme.colors.surface,
                     style = MaterialTheme.typography.caption
                 )
@@ -77,7 +82,9 @@ fun DogInfoCard(name: String, gender: String, location: String) {
 
             Text(
                 text = "12 mins ago",
-                modifier = Modifier.padding(0.dp, 0.dp, 12.dp, 0.dp),
+                modifier = Modifier
+                    .padding(0.dp, 0.dp, 12.dp, 0.dp)
+                    .testTag("dogInfoTime"),
                 color = MaterialTheme.colors.surface,
                 style = MaterialTheme.typography.overline
             )

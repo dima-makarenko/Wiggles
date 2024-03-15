@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import dev.spikeysanju.wiggles.R
@@ -45,7 +46,10 @@ fun ChipView(gender: String, colorResource: Color) {
             .background(colorResource.copy(.08f))
     ) {
         Text(
-            text = gender, modifier = Modifier.padding(12.dp, 6.dp, 12.dp, 6.dp),
+            text = gender,
+            modifier = Modifier
+                .padding(12.dp, 6.dp, 12.dp, 6.dp)
+                .testTag("dogGenderTag"),
             style = MaterialTheme.typography.caption,
             color = colorResource
         )
