@@ -2,6 +2,7 @@ package dev.spikeysanju.wiggles.pages
 
 import android.app.Activity
 import androidx.activity.ComponentActivity
+import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -11,29 +12,29 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import dev.spikeysanju.wiggles.extensions.getText
 import dev.spikeysanju.wiggles.pagecomponents.GenderTagTestComponent
 
-class DogDetailsPage<A : Activity?, C : ComponentActivity>(
-    testRule: AndroidComposeTestRule<ActivityScenarioRule<A>, C>
+class DogDetailsPage(
+    compose: SemanticsNodeInteractionsProvider
 ) {
 
-    private val title = testRule.onNodeWithTag("topBarTitle")
-    private val backButton = testRule.onNodeWithTag("topBarBackButton")
+    private val title = compose.onNodeWithTag("topBarTitle")
+    private val backButton = compose.onNodeWithTag("topBarBackButton")
 
-    private val dogDetailsView = testRule.onNodeWithTag("dogDetailsView")
+    private val dogDetailsView = compose.onNodeWithTag("dogDetailsView")
 
-    private val image = testRule.onNodeWithTag("dogDetailsImage")
+    private val image = compose.onNodeWithTag("dogDetailsImage")
 
-    private val dogName = testRule.onNodeWithTag("dogInfoName")
-    private val dogLocation = testRule.onNodeWithTag("dogInfoLocation")
-    private val dogDetailsTime = testRule.onNodeWithTag("dogInfoTime")
-    private val genderTag = GenderTagTestComponent(testRule)
+    private val dogName = compose.onNodeWithTag("dogInfoName")
+    private val dogLocation = compose.onNodeWithTag("dogInfoLocation")
+    private val dogDetailsTime = compose.onNodeWithTag("dogInfoTime")
+    private val genderTag = GenderTagTestComponent(compose)
 
-    private val dogDescription = testRule.onNodeWithTag("dogDescription")
+    private val dogDescription = compose.onNodeWithTag("dogDescription")
 
-    private val dogShortInfoCard = testRule.onNodeWithTag("dogShortInfoCard")
+    private val dogShortInfoCard = compose.onNodeWithTag("dogShortInfoCard")
 
-    private val ownerCard = testRule.onNodeWithTag("ownerCard")
+    private val ownerCard = compose.onNodeWithTag("ownerCard")
 
-    private val adoptButton = testRule.onNodeWithTag("adoptButton")
+    private val adoptButton = compose.onNodeWithTag("adoptButton")
 
 
     fun dogName() = dogName.getText()

@@ -3,39 +3,57 @@ package dev.spikeysanju.wiggles.pages
 import android.app.Activity
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.ExperimentalTestApi
+import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
+import androidx.compose.ui.test.assertAll
+import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.junit4.AndroidComposeTestRule
+import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToIndex
-import androidx.test.ext.junit.rules.ActivityScenarioRule
 import dev.spikeysanju.wiggles.extensions.getText
 import dev.spikeysanju.wiggles.pagecomponents.GenderTagTestComponent
 import kotlin.AssertionError
 
-class HomePage<A : Activity?, C : ComponentActivity>(
-    testRule: AndroidComposeTestRule<ActivityScenarioRule<A>, C>
+class HomePage(
+    private val compose: SemanticsNodeInteractionsProvider
 ) {
 
-    private val title = testRule.onNodeWithTag("topBarTitle")
-    private val subtitle = testRule.onNodeWithTag("topBarSubtitle")
+    private val title = compose.onNodeWithTag("topBarTitle")
+    private val subtitle = compose.onNodeWithTag("topBarSubtitle")
 
-    private val dogsList = testRule.onNodeWithTag("dogsList")
-    private val dogCards = testRule.onAllNodesWithTag("dogCard")
-    private val dogImages = testRule.onAllNodesWithTag("dogImage", true)
-    private val dogNames = testRule.onAllNodesWithTag("dogName", true)
-    private val dogAdditionalInfos = testRule.onAllNodesWithTag("dogAdditionalInfo", true)
-    private val dogLocations = testRule.onAllNodesWithTag("dogLocation", true)
-    private val genderTag = GenderTagTestComponent(testRule)
+    private val dogsList = compose.onNodeWithTag("dogsList")
+    private val dogCards = compose.onAllNodesWithTag("dogCard")
+    private val dogImages = compose.onAllNodesWithTag("dogImage", true)
+    private val dogNames = compose.onAllNodesWithTag("dogName", true)
+    private val dogAdditionalInfos = compose.onAllNodesWithTag("dogAdditionalInfo", true)
+    private val dogLocations = compose.onAllNodesWithTag("dogLocation", true)
+    private val genderTag = GenderTagTestComponent(compose)
 
     fun tapDogCard(index: Int = 0) = dogCards[index].performClick()
     fun dogName(index: Int = 0) = dogNames.getText(index)
-    fun dogsCount() = dogNames.fetchSemanticsNodes().size
+    fun dogsCount() = dogCards.fetchSemanticsNodes().size
 
     fun verifyTopBar() {
         title.assertIsDisplayed()
         subtitle.assertIsDisplayed()
+    }
+
+    fun verifyEmptyList() {
+        dogCards.fetchSemanticsNodes().forEachIndexed { index, _ ->
+            dogCards[index].assertIsNotDisplayed()
+        }
+    }
+
+    fun verifyDogDisplayed(name: String) {
+        compose.onNodeWithText(name).assertIsDisplayed()
+    }
+
+    @OptIn(ExperimentalTestApi::class)
+    fun scrollToDog(index: Int) {
+        dogsList.performScrollToIndex(index)
     }
 
     @OptIn(ExperimentalTestApi::class)
