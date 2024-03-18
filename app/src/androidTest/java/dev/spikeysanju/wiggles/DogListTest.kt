@@ -39,11 +39,7 @@ class DogListTest {
         homePage.tapDogCard(0)
 
         val dogDetailsPage = DogDetailsPage(composeTestRule)
-        val actualDogDetailsName = dogDetailsPage.dogName()
-        val expectedDogDetailsName = DOG_LIST[0].name
-        assert(actualDogDetailsName == expectedDogDetailsName
-        ) { "Incorrect dog details page is opened\nExpected: $expectedDogDetailsName" +
-                "\nActual: $actualDogDetailsName" }
+        dogDetailsPage.verifyDogName(DOG_LIST[0].name)
     }
 
     @Test

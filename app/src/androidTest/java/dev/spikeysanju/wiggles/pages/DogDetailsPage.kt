@@ -2,10 +2,10 @@ package dev.spikeysanju.wiggles.pages
 
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performGesture
 import androidx.compose.ui.test.swipeUp
-import dev.spikeysanju.wiggles.extensions.getText
 import dev.spikeysanju.wiggles.pagecomponents.GenderTagTestComponent
 
 class DogDetailsPage(
@@ -32,8 +32,9 @@ class DogDetailsPage(
 
     private val adoptButton = compose.onNodeWithTag("adoptButton")
 
-
-    fun dogName() = dogName.getText()
+    fun verifyDogName(name: String) {
+        dogName.assertTextEquals(name)
+    }
 
     fun verifyDogDetails() {
         title.assertIsDisplayed()
