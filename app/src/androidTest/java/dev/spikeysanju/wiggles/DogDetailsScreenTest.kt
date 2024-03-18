@@ -41,6 +41,8 @@ class DogDetailsScreenTest {
     //       androidx.navigation.testing.TestNavigatorProvider$navigator$1 cannot be cast to com.google.accompanist.navigation.animation.AnimatedComposeNavigator
     //       My current assumption that the reason might be in outdated Compose libraries,
     //       that in turn depend on outdated targetSDK
+    // UPDATE: Apparently it appeared to be true. I experimented with updating all libs in a separate branch -
+    //         https://github.com/dima-makarenko/Wiggles/tree/updated_libs and navigation started working properly
     @Test
     fun GIVEN_dogDetailsScreenDisplayed_WHEN_tapBackButton_THEN_homeScreenIsDisplayed() {
         homePage.tapDogCard()
