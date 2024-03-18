@@ -4,6 +4,7 @@ import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performGesture
 import androidx.compose.ui.test.swipeUp
 import dev.spikeysanju.wiggles.pagecomponents.GenderTagTestComponent
@@ -31,6 +32,8 @@ class DogDetailsPage(
     private val ownerCard = compose.onNodeWithTag("ownerCard")
 
     private val adoptButton = compose.onNodeWithTag("adoptButton")
+
+    fun tapBackButton() = backButton.performClick()
 
     fun verifyDogName(name: String) {
         dogName.assertTextEquals(name)

@@ -16,7 +16,7 @@ class DogCardTest {
     private val dogCard = DogCard(composeTestRule)
 
     @Test
-    fun GIVEN_dogCardHasAllInfo_WHEN_dogCardIsPassedDogInfo_THEN_dogCardDisplaysCorrectInfo() {
+    fun WHEN_dogCardHasAllInfo_THEN_correctDogInfoIsDisplayed() {
         val dog = Dog(
             0,
             "Hachiko",

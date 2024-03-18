@@ -15,7 +15,7 @@ class HomeScreenTest {
     private val homePage = HomePage(composeTestRule)
 
     @Test
-    fun GIVEN_dogsPresentInList_WHEN_appLaunched_WHEN_allTopBarElementsAreDisplayed() {
+    fun WHEN_launchApp_WHEN_allTopBarElementsAreDisplayed() {
         homePage.verifyTopBar()
     }
 }

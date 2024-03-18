@@ -43,7 +43,7 @@ class DogListTest {
     }
 
     @Test
-    fun GIVEN_emptyDogList_WHEN_appIsLaunched_THEN_noDogCardsAreDisplayed() {
+    fun GIVEN_emptyDogList_WHEN_launchApp_THEN_noDogCardsAreDisplayed() {
         databaseRule.setDogsList(EMPTY_DOG_LIST)
         activityRule.launch()
         homePage.verifyEmptyList()
@@ -51,9 +51,10 @@ class DogListTest {
 
     // INFO: Fails due to bug with dog items duplication. Can be fixed by removing dogList.forEach at Home screen
     @Test
-    fun GIVEN_longDogList_WHEN_homeScreenIsScrolledDown_THEN_LastDogCardIsDisplayed() {
+    fun GIVEN_longDogList_WHEN_scrollDownHomeScreen_THEN_LastDogCardIsDisplayed() {
         databaseRule.setDogsList(LONG_DOG_LIST)
         activityRule.launch()
+        // INFO: Due to TopBar being within LazyColumn above dogs list, we don't need to subtract 1 from index
         homePage.scrollToDog(LONG_DOG_LIST.size)
         homePage.verifyDogDisplayed(LONG_DOG_LIST.last().name)
     }

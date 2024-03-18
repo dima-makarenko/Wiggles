@@ -2,6 +2,7 @@ package dev.spikeysanju.wiggles
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.test.espresso.Espresso
 import dev.spikeysanju.wiggles.pages.DogDetailsPage
 import dev.spikeysanju.wiggles.pages.HomePage
 import org.junit.Rule
@@ -21,4 +22,14 @@ class DogDetailsScreenTest {
         homePage.tapDogCard()
         dogDetailsPage.verifyDogDetails()
     }
+
+    @Test
+    fun GIVEN_dogDetailsScreenDisplayed_WHEN_tapBackButton_THEN_homeScreenIsDisplayed() {
+        homePage.tapDogCard()
+        // INFO: clickable modifier action for some reason is not executed on click from the test, needs investigation
+        // dogDetailsPage.tapBackButton()
+        Espresso.pressBack()
+        homePage.verifyPageDisplayed()
+    }
+
 }

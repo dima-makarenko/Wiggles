@@ -19,6 +19,11 @@ class HomePage(private val compose: SemanticsNodeInteractionsProvider) {
     private val dogsList = compose.onNodeWithTag("dogsList")
     private val dogCards = compose.onAllNodesWithTag("dogCard")
 
+    // INFO: Verifying an element unique to this screen
+    fun verifyPageDisplayed() {
+        themeSwitch.assertIsDisplayed()
+    }
+
     fun tapDogCard(index: Int = 0) = dogCards[index].performClick()
 
     fun verifyTopBar() {
