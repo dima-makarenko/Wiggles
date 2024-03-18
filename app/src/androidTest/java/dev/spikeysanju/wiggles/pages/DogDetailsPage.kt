@@ -1,14 +1,10 @@
 package dev.spikeysanju.wiggles.pages
 
-import android.app.Activity
-import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performGesture
 import androidx.compose.ui.test.swipeUp
-import androidx.test.ext.junit.rules.ActivityScenarioRule
 import dev.spikeysanju.wiggles.extensions.getText
 import dev.spikeysanju.wiggles.pagecomponents.GenderTagTestComponent
 

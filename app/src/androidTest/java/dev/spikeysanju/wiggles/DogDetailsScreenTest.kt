@@ -17,7 +17,7 @@ class DogDetailsScreenTest {
     private val dogDetailsPage = DogDetailsPage(composeTestRule)
 
     @Test
-    fun allDogDetailsElementsDisplayed() {
+    fun GIVEN_dogsPresentInList_WHEN_openDogDetails_THEN_allDogDetailsAreDisplayed() {
         homePage.tapDogCard()
         dogDetailsPage.verifyDogDetails()
     }

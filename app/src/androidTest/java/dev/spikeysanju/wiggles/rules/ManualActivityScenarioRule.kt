@@ -1,19 +1,17 @@
 package dev.spikeysanju.wiggles.rules
 
-import androidx.compose.animation.ExperimentalAnimationApi
+import android.app.Activity
 import androidx.test.core.app.ActivityScenario
-import dev.spikeysanju.wiggles.MainActivity
 import org.junit.rules.ExternalResource
 
-@OptIn(ExperimentalAnimationApi::class)
-class ManualActivityScenarioRule: ExternalResource() {
+class ManualActivityScenarioRule(private val activity: Class<out Activity>): ExternalResource() {
 
-    private var activityScenario: ActivityScenario<MainActivity>? = null
+    private lateinit var activityScenario: ActivityScenario<out Activity>
     override fun after() {
-        activityScenario?.close()
+        activityScenario.close()
     }
 
     fun launch() {
-        activityScenario = ActivityScenario.launch(MainActivity::class.java)
+        activityScenario = ActivityScenario.launch(activity)
     }
 }

@@ -88,7 +88,8 @@ fun WigglesThemeSwitch(onToggle: () -> Unit) {
         contentDescription = null,
         modifier = Modifier
             .size(24.dp, 24.dp)
-            .clickable(onClick = onToggle),
+            .clickable(onClick = onToggle)
+            .testTag("topBarThemeSwitch"),
         tint = colorResource(id = R.color.text)
     )
 }
