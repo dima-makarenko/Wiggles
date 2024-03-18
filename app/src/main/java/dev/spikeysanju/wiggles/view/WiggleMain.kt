@@ -19,6 +19,7 @@ import androidx.compose.animation.*
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.navArgument
 import com.google.accompanist.navigation.animation.AnimatedNavHost
@@ -29,8 +30,8 @@ import dev.spikeysanju.wiggles.navigation.Screen
 
 @ExperimentalAnimationApi
 @Composable
-fun WigglesMain(toggleTheme: () -> Unit) {
-    val navController = rememberAnimatedNavController()
+fun WigglesMain(navController: NavHostController = rememberAnimatedNavController(), toggleTheme: () -> Unit) {
+
     AnimatedNavHost(navController, startDestination = Screen.Home.route) {
         composable(
             Screen.Home.route,
