@@ -15,27 +15,34 @@
  */
 package dev.spikeysanju.wiggles.view
 
-import androidx.compose.animation.*
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
-import androidx.navigation.compose.navArgument
-import com.google.accompanist.navigation.animation.AnimatedNavHost
-import com.google.accompanist.navigation.animation.composable
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import dev.spikeysanju.wiggles.data.FakeDogDatabase
 import dev.spikeysanju.wiggles.navigation.Screen
 
 @ExperimentalAnimationApi
 @Composable
-fun WigglesMain(navController: NavHostController = rememberAnimatedNavController(), toggleTheme: () -> Unit) {
+fun WigglesMain(
+    navController: NavHostController = rememberNavController(),
+    toggleTheme: () -> Unit
+) {
 
-    AnimatedNavHost(navController, startDestination = Screen.Home.route) {
+    NavHost(navController, startDestination = Screen.Home.route) {
         composable(
             Screen.Home.route,
-            exitTransition = { _, _ ->
+            exitTransition = {
                 slideOutHorizontally(
                     targetOffsetX = { -300 },
                     animationSpec = tween(
@@ -44,7 +51,7 @@ fun WigglesMain(navController: NavHostController = rememberAnimatedNavController
                     )
                 ) + fadeOut(animationSpec = tween(300))
             },
-            popEnterTransition = { _, _ ->
+            popEnterTransition = {
                 slideInHorizontally(
                     initialOffsetX = { -300 },
                     animationSpec = tween(
@@ -58,7 +65,7 @@ fun WigglesMain(navController: NavHostController = rememberAnimatedNavController
         }
         composable(
             "${Screen.Details.route}/{id}/{title}/{location}",
-            enterTransition = { _, _ ->
+            enterTransition = {
                 slideInHorizontally(
                     initialOffsetX = { 300 },
                     animationSpec = tween(
@@ -67,7 +74,7 @@ fun WigglesMain(navController: NavHostController = rememberAnimatedNavController
                     )
                 ) + fadeIn(animationSpec = tween(300))
             },
-            exitTransition = { _, _ ->
+            exitTransition = {
                 slideOutHorizontally(
                     targetOffsetX = { 300 },
                     animationSpec = tween(

@@ -6,9 +6,9 @@ import dev.spikeysanju.wiggles.pages.HomePage
 import org.junit.Rule
 import org.junit.Test
 
+@OptIn(ExperimentalAnimationApi::class)
 class HomeScreenTest {
 
-    @OptIn(ExperimentalAnimationApi::class)
     @get:Rule
     val composeTestRule = createAndroidComposeRule(MainActivity::class.java)
 

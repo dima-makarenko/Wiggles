@@ -3,10 +3,10 @@ package dev.spikeysanju.wiggles.pages
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
+import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.performGesture
-import androidx.compose.ui.test.swipeUp
+import androidx.compose.ui.test.performScrollToNode
 import dev.spikeysanju.wiggles.pagecomponents.GenderTagTestComponent
 
 class DogDetailsPage(
@@ -50,9 +50,7 @@ class DogDetailsPage(
         dogDetailsTime.assertIsDisplayed()
         genderTag.verifyGenderTagDisplayed()
 
-        // INFO: Workaround due to performScrollTo not working within LazyColumn
-        //       Nicer solution would be to update compose to above 1.3 version to use performScrollToNode
-        dogDetailsView.performGesture { swipeUp() }
+        dogDetailsView.performScrollToNode(hasTestTag("adoptButton"))
 
         dogDescription.assertIsDisplayed()
         dogShortInfoCard.assertIsDisplayed()
